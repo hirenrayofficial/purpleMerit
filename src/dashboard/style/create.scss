@@ -1,0 +1,133 @@
+// ./style/createUser.scss
+$purple-primary: #6d28d9;
+$purple-light: #f5f3ff;
+$text-dark: #0f172a;
+$text-gray: #64748b;
+$border-color: #e2e8f0;
+
+.full-page-containera {
+  min-height: 100vh;
+  margin-top: 80px;
+  background-color: #ffffff;
+  padding: 3rem 1.5rem;
+  font-family: "Inter", sans-serif;
+
+  .content-wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+
+  .page-header {
+    margin-bottom: 2.5rem;
+    border-left: 4px solid $purple-primary;
+    padding-left: 1.5rem;
+
+    h1 {
+      font-size: 2rem;
+      color: $text-dark;
+      margin: 0;
+    }
+    p {
+      color: $text-gray;
+      margin-top: 0.5rem;
+    }
+  }
+
+  .form-section {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .input-box {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+
+    label {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: $text-dark;
+    }
+
+    input,
+    select,
+    textarea {
+      padding: 0.8rem 1rem;
+      border: 1.5px solid $border-color;
+      border-radius: 10px;
+      font-size: 1rem;
+      transition: all 0.2s;
+
+      &:focus {
+        border-color: $purple-primary;
+        outline: none;
+        box-shadow: 0 0 0 4px rgba(109, 40, 217, 0.1);
+      }
+
+      &:disabled {
+        background-color: #f8fafc;
+        cursor: not-allowed;
+        color: $text-gray;
+        border-style: dashed;
+      }
+    }
+  }
+
+  .full-span {
+    grid-column: 1 / -1;
+  }
+
+  .action-bar {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid $border-color;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+
+    .btn {
+      padding: 0.8rem 2rem;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.1s;
+
+      &:active {
+        transform: scale(0.98);
+      }
+    }
+
+    .btn-primary {
+      background: $purple-primary;
+      color: white;
+      border: none;
+      &:hover {
+        background: #5b21b6;
+      }
+    }
+
+    .btn-secondary {
+      background: white;
+      color: $text-gray;
+      border: 1px solid $border-color;
+      &:hover {
+        background: $purple-light;
+      }
+    }
+  }
+
+  .role-locked-notice {
+    font-size: 0.8rem;
+    color: #ef4444;
+    margin-top: 0.3rem;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+}

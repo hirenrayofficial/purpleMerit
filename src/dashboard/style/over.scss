@@ -1,0 +1,131 @@
+// ./style/over.scss
+$primary-purple: #6d28d9; // Rich Violet
+$light-purple: #f5f3ff;
+$border-gray: #f1f5f9;
+$text-dark: #1e293b;
+$text-muted: #64748b;
+
+.overview-container {
+  min-height: 100vh;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  // align-items: center;
+  // padding: 1.5rem;
+  // background-color: #f8f8f8; // Clean white background
+  color: $text-dark;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  .overview-main {
+    width: 100%;
+    max-width: 1400px;
+    padding-bottom: 100px;
+  }
+  .header {
+    margin-bottom: 2rem;
+    h1 {
+      font-size: clamp(1.5rem, 5vw, 2rem);
+      font-weight: 800;
+      color: $primary-purple;
+    }
+  }
+
+  // Responsive Grid
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+
+    .stat-card {
+      background: #ffffff;
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 1px solid $border-gray;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      transition: all 0.2s ease-in-out;
+
+      &:hover {
+        border-color: $primary-purple;
+        box-shadow: 0 10px 15px -3px rgba(109, 40, 217, 0.1);
+      }
+
+      .label {
+        color: $text-muted;
+        font-size: 0.875rem;
+        font-weight: 500;
+      }
+      .value {
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: $primary-purple;
+        margin: 0.5rem 0;
+      }
+      .trend {
+        font-size: 0.75rem;
+        color: #059669;
+        font-weight: 600;
+      }
+    }
+  }
+
+  .table-container {
+    background: #ffffff;
+    border-radius: 12px;
+    border: 1px solid $border-gray;
+    overflow-x: auto; // Crucial for responsiveness
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+
+    .table-header {
+      padding: 1.25rem;
+      border-bottom: 1px solid $border-gray;
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .user-table {
+      width: 100%;
+      min-width: 600px; // Prevents squishing on tiny screens
+      border-collapse: collapse;
+
+      th {
+        background: $light-purple;
+        text-align: left;
+        padding: 1rem;
+        color: $primary-purple;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      td {
+        padding: 1rem;
+        border-bottom: 1px solid $border-gray;
+        font-size: 0.95rem;
+      }
+
+      .role-tag {
+        background: $light-purple;
+        color: $primary-purple;
+        padding: 4px 10px;
+        border-radius: 6px;
+        font-weight: 600;
+        font-size: 0.8rem;
+      }
+
+      .status-dot {
+        height: 8px;
+        width: 8px;
+        border-radius: 50%;
+        display: inline-block;
+        margin-right: 8px;
+        &.is_active {
+          background-color: #10b981;
+        }
+        &.pending {
+          background-color: #f59e0b;
+        }
+      }
+    }
+  }
+}

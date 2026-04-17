@@ -1,0 +1,119 @@
+.header-main {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 999;
+  background-color: purple;
+  color: white;
+  padding: 8px 16px; // Increased vertical padding for better breathing room
+  box-sizing: border-box;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); // Added subtle shadow
+
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1400px;
+
+    .left {
+      font-weight: bold;
+      letter-spacing: 0.5px;
+    }
+
+    .avtar-main {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 4px 8px;
+      border-radius: 8px;
+      transition: background 0.3s ease;
+      cursor: pointer;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.1); // Subtle highlight on hover
+      }
+
+      .av-name-lg {
+        width: 36px; // Slightly larger for better visual balance
+        height: 36px;
+        border-radius: 50%;
+        background: white;
+        color: purple; // Matching theme
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .av-dt {
+        display: grid;
+        #a{
+          font-size: 12px;
+        }
+      }
+    }
+  }
+
+  .open-main {
+    position: absolute;
+    top: calc(100% + 10px); // Adds a small gap between header and menu
+    right: 2%;
+    width: 200px;
+    background-color: white; // Changed to white card for contrast
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15); // Deeper shadow for "floating" effect
+    animation: fadeIn 0.2s ease-out;
+
+    .button-s {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      .bt-a {
+        padding: 8px 16px;
+        color: #333;
+        background-color: transparent;
+        border-radius: 8px;
+        transition: all 0.2s ease;
+        text-decoration: none;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #f0f0f0;
+          color: purple;
+        }
+      }
+      .bt-b {
+        padding: 8px 16px;
+        color: red;
+        background-color: transparent;
+        border-radius: 8px;
+        transition: all 0.2s ease;
+        text-decoration: none;
+        cursor: pointer;
+
+        &:hover {
+          background-color: red;
+          color: white;
+        }
+      }
+    }
+  }
+}
+
+// Simple animation for the dropdown
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
