@@ -4,7 +4,6 @@ import Cookies from "js-cookie";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { BsPersonGear } from "react-icons/bs";
-import { jwtDecode } from "jwt-decode";
 import { getUser } from "../../utils/auth";
 
 export default function Header() {
@@ -17,7 +16,7 @@ export default function Header() {
   const [open, setOpen] = useState(false);
 
   const handelOpen = () => {
-    if (open == false) {
+    if (open === false) {
       setOpen(true);
     } else {
       setOpen(false);

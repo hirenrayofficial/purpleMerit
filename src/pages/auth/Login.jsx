@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./style/login.scss";
 import axios from "axios";
-import { redirect, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode";
 
@@ -12,7 +12,7 @@ export default function Signin() {
   const [Eerror, setEerror] = useState("");
   const [Perror, setPerror] = useState("");
 
-  const [setp, setStep] = useState(1);
+
   const url = process.env.REACT_APP_BACK_URL;
   const key = process.env.REACT_APP_SECRET_KEY;
 

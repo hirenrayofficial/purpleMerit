@@ -1,30 +1,39 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import "./style/over.scss";
 import axios from "axios";
 
 export default function Overview() {
   const [data, setdata] = useState([]);
-  const [stat,setStats] = useState([])
+  const [stat, setStats] = useState([]);
   const url = process.env.REACT_APP_BACK_URL;
-  const handelGetover = async () => {
-    const res = await axios.get(url+"/api/v2/get-ov-dt",        {
-          withCredentials: true,
-        });
-    if (res.data) {
-      setdata(res.data.users);
-      setStats(res.data)
+  const handleGetover = useCallback(async () => {
+    try {
+      const res = await axios.get(`${url}/api/v2/get-ov-dt`, {
+        withCredentials: true,
+      });
+      if (res.data) {
+        setdata(res.data.users);
+        setStats(res.data);
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
     }
-  };
+  }, [url]); // 2. Add 'url' as a dependency since it's used inside
+
+  // 3. Add handleGetover to the dependency array
   useEffect(() => {
-    handelGetover()
-  }, []);
+    handleGetover();
+  }, [handleGetover]);
   const stats = [
-    { label: "Total Users", value:stat.totalUsers, trend: "+24 today" },
-    { label: "Pending Approval", value: stat.totalpandingUser, trend: "Requires review" },
+    { label: "Total Users", value: stat.totalUsers, trend: "+24 today" },
+    {
+      label: "Pending Approval",
+      value: stat.totalpandingUser,
+      trend: "Requires review",
+    },
     // { label: "Active Managers", value: "12", trend: "Across 4 regions" },
     // { label: "System Load", value: "98%", trend: "Optimal" },
   ];
-
 
   return (
     <div className="overview-container">
@@ -57,7 +66,7 @@ export default function Overview() {
               </tr>
             </thead>
             <tbody>
-              {data.map((user,index) => (
+              {data.map((user, index) => (
                 <tr key={index}>
                   <td>
                     <strong>{user.user_name}</strong>
@@ -68,7 +77,7 @@ export default function Overview() {
                   </td>
                   <td>
                     <span className={`status-dot ${user.is_active}`}></span>
-                        {user.is_active ? "Active" : "Inactive"}
+                    {user.is_active ? "Active" : "Inactive"}
                   </td>
                 </tr>
               ))}

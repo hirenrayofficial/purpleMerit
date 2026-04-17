@@ -30,7 +30,9 @@ export default function Profile() {
           withCredentials: true,
         },
       );
-      alert("Name updated successfully!");
+      if (res) {
+        alert("Name updated successfully!");
+      }
     } catch (err) {
       alert("Error updating name");
     }
@@ -41,9 +43,13 @@ export default function Profile() {
     if (passwords.new !== passwords.confirm)
       return alert("Passwords do not match");
     try {
-      await axios.put(`${url}/api/v2/change-password/${userDt.uuid}?id=${id}`, passwords,{
-        withCredentials: true,
-      });
+      await axios.put(
+        `${url}/api/v2/change-password/${userDt.uuid}?id=${id}`,
+        passwords,
+        {
+          withCredentials: true,
+        },
+      );
       alert("Password changed!");
       setPasswords({ current: "", new: "", confirm: "" });
     } catch (err) {
@@ -57,9 +63,12 @@ export default function Profile() {
     );
     if (confirmed) {
       try {
-        await axios.delete(`${url}/api/v2/delete-account/${userDt.uuid}?id=${id}`, {
-          withCredentials: true,
-        });
+        await axios.delete(
+          `${url}/api/v2/delete-account/${userDt.uuid}?id=${id}`,
+          {
+            withCredentials: true,
+          },
+        );
         alert("Account deleted. Redirecting to homepage...");
         window.location.href = "/login";
       } catch (err) {

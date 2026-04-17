@@ -15,10 +15,7 @@ export default function CreateUser() {
   const [pass, setPass] = useState("");
   const [username, setUsername] = useState("");
   const [role, setRole] = useState("");
-  const [error, setError] = useState("");
-  const [Eerror, setEerror] = useState("");
-  const [Nerror, setNerror] = useState("");
-  const [Perror, setPerror] = useState("");
+
 
   const nameGenretor = (username) => {
     const genrate = username

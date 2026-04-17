@@ -14,11 +14,9 @@ export default function Users() {
   const [usersPerPage] = useState(5); // Change this to show more/less per page
 
   // Fetch Users on Load
-  useEffect(() => {
-    fetchUsers();
-  }, []);
-
-  const fetchUsers = async () => {
+  // 1. Wrap the function in useCallback
+  // 2. Move it ABOVE the useEffect
+  const fetchUsers = useCallback(async () => {
     try {
       const res = await axios.get(`${url}/api/v2/get-puser-list?id=${id}`, {
         withCredentials: true,
@@ -29,7 +27,11 @@ export default function Users() {
     } catch (error) {
       console.error("Error fetching users", error);
     }
-  };
+  }, [url, id]); // 3. List dependencies that the function relies on
+
+  useEffect(() => {
+    fetchUsers();
+  }, [fetchUsers]); // 4. Now include fetchUsers here
 
   // --- Logic for Pagination ---
   const indexOfLastUser = currentPage * usersPerPage;
@@ -48,7 +50,7 @@ export default function Users() {
           {},
           {
             withCredentials: true,
-          }
+          },
         );
         if (res.status === 200) {
           setUsers(users.filter((user) => user.id !== userId));

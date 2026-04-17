@@ -1,7 +1,7 @@
 import React from "react";
-import Cookies from "js-cookie";
-import { Outlet, Navigate, useSearchParams } from "react-router-dom";
-import { jwtDecode } from "jwt-decode";
+
+import { Navigate, useSearchParams } from "react-router-dom";
+
 import { getToken, getUser } from "../utils/auth";
 export default function DashboardProtectedroute({children}) {
   const userCookie = getToken();

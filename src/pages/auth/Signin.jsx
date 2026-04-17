@@ -11,7 +11,7 @@ export default function Signin() {
   const [Nerror, setNerror] = useState("");
   const [Perror, setPerror] = useState("");
 
-  const [setp, setStep] = useState(1);
+
   const url = process.env.REACT_APP_BACK_URL;
 
   const nameGenretor = (username) => {
