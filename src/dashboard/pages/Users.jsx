@@ -10,7 +10,6 @@ export default function Users() {
   const id = search.get("id");
   const { roles } = useAuth();
 
-
   // State Management
   const [users, setUsers] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -20,33 +19,36 @@ export default function Users() {
   const [formData, setFormData] = useState({});
   const usersPerPage = 5;
 
-  // Fetch Users on Load and when page or id changes
+  const fetchUsers = useCallback(
+    async (page) => {
+      try {
+        const res = await axios.get(
+          `${url}/api/v2/get-user-list?id=${id}&page=${page}&limit=${usersPerPage}`,
+          {
+            withCredentials: true,
+          },
+        );
+        if (res.status === 200) {
+          setUsers(res.data.users || []);
+          setTotalPages(res.data.totalPages || 1);
+        }
+      } catch (error) {
+        console.error("Error fetching users", error);
+      }
+    },
+    [id, url, usersPerPage],
+  );
+
+  // 3. Effect for when the ID changes (reset to page 1)
   useEffect(() => {
     setCurrentPage(1);
     fetchUsers(1);
-  }, [id]);
+  }, [id, fetchUsers]); // Added fetchUsers here
 
-  // Fetch Users when page changes
+  // 4. Effect for when the page changes
   useEffect(() => {
     fetchUsers(currentPage);
-  }, [currentPage]);
-
-  const fetchUsers = async (page) => {
-    try {
-      const res = await axios.get(
-        `${url}/api/v2/get-user-list?id=${id}&page=${page}&limit=${usersPerPage}`,
-        {
-          withCredentials: true,
-        },
-      );
-      if (res.status === 200) {
-        setUsers(res.data.users || []);
-        setTotalPages(res.data.totalPages || 1);
-      }
-    } catch (error) {
-      console.error("Error fetching users", error);
-    }
-  };
+  }, [currentPage, fetchUsers]); // Added fetchUsers here
 
   // Current page users come directly from API
   const currentUsers = users;
@@ -57,9 +59,12 @@ export default function Users() {
   const handleDelete = async (userId) => {
     if (window.confirm("Are you sure you want to delete this user?")) {
       try {
-        const res = await axios.delete(`${url}/api/v2/delete-user/${userId}?id=${id}`, {
-          withCredentials: true,
-        });
+        const res = await axios.delete(
+          `${url}/api/v2/delete-user/${userId}?id=${id}`,
+          {
+            withCredentials: true,
+          },
+        );
         if (res.status === 200) {
           setUsers(users.filter((user) => user.uuid !== userId));
           alert("User deleted successfully");
