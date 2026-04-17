@@ -1,53 +1,218 @@
-# Getting Started with Create React App
+# PurpleMerit
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern React-based dashboard application for user management and admin control panel with authentication features.
 
-## Available Scripts
+## 📋 Demo admin Login
+ gmail [purple@gmail.com]
+ pass[4550]
+ live link - https://purple.hirenray.rest/
 
-In the project directory, you can run:
+## 📋 Table of Contents
 
-### `npm start`
+- [Features](#features)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Getting Started](#getting-started)
+- [Available Scripts](#available-scripts)
+- [Project Structure](#project-structure)
+- [Technologies Used](#technologies-used)
+- [Environment Setup](#environment-setup)
+- [Deployment](#deployment)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## ✨ Features
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- User authentication with JWT tokens
+- Admin dashboard for user management
+- User profile management
+- Pending user approval system
+- Responsive design with SASS styling
+- Protected routes for authenticated users
+- Modern UI with React Icons
 
-### `npm test`
+## 📦 Prerequisites
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Before you begin, ensure you have the following installed:
 
-### `npm run build`
+- **Node.js** (v14 or higher) - [Download](https://nodejs.org/)
+- **npm** (comes with Node.js) or **yarn**
+- **Git** - [Download](https://git-scm.com/)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+To verify installation, run:
+```bash
+node --version
+npm --version
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 🚀 Installation
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. **Clone the repository:**
+```bash
+git clone <repository-url>
+cd purpleMerit
+```
 
-### `npm run eject`
+2. **Install dependencies:**
+```bash
+npm install
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+3. **Create environment file:**
+Create a `.env` file in the root directory and add your configuration:
+```
+REACT_APP_API_URL=http://localhost:3001
+REACT_APP_API_TIMEOUT=5000
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🏃 Getting Started
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Development Mode
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Start the development server:
+```bash
+npm start
+```
 
-## Learn More
+The application will open automatically at [http://localhost:3000](http://localhost:3000)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+The page reloads when you make changes. Any lint errors will appear in the console.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Build for Production
 
-### Code Splitting
+Create an optimized production build:
+```bash
+npm run build
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+The build files will be in the `build/` folder, ready for deployment.
+
+### Run Tests
+
+Execute the test suite:
+```bash
+npm test
+```
+
+Launches the test runner in interactive watch mode.
+
+## 📜 Available Scripts
+
+| Command | Description |
+|---------|-------------|
+| `npm start` | Runs the app in development mode |
+| `npm run build` | Builds the app for production |
+| `npm test` | Runs the test suite |
+| `npm run eject` | Ejects from Create React App (one-way operation) |
+
+## 📁 Project Structure
+
+```
+src/
+├── component/          # Reusable components
+│   ├── dashboard/      # Dashboard components (Header, Tabbar)
+│   ├── home/           # Home page components
+│   └── Layout/         # Layout wrappers
+├── context/            # React Context (Auth provider)
+├── dashboard/          # Dashboard pages
+│   ├── Dashboard.jsx   # Main dashboard
+│   ├── Overview.jsx    # Overview page
+│   └── pages/          # Sub-pages (Users, Profile, etc.)
+├── home/               # Home page files
+├── pages/              # Main page routes
+│   ├── auth/           # Authentication pages (Login, Signin)
+│   └── others/         # Other pages
+├── protectedComponents/ # Protected route components
+├── utils/              # Utility functions
+├── App.js              # Main App component
+├── index.js            # Entry point
+└── index.css           # Global styles
+```
+
+## 🛠 Technologies Used
+
+- **React** - UI library
+- **React Router DOM** - Client-side routing
+- **Axios** - HTTP client for API requests
+- **SASS/SCSS** - CSS preprocessor
+- **JWT Decode** - JWT token handling
+- **Bcrypt** - Password hashing
+- **React Icons** - Icon library
+- **JS Cookie** - Cookie management
+- **Create React App** - Build tooling
+
+## ⚙️ Environment Setup
+
+Create a `.env` file in the root directory with the following variables:
+
+```env
+REACT_APP_API_URL=http://localhost:3001
+REACT_APP_API_TIMEOUT=5000
+```
+
+### Optional Variables
+
+```env
+REACT_APP_DEBUG=false
+REACT_APP_VERSION=0.1.0
+```
+
+## 📤 Deployment
+
+### Deploy to Netlify
+
+1. Build the project:
+```bash
+npm run build
+```
+
+2. Install Netlify CLI:
+```bash
+npm install -g netlify-cli
+```
+
+3. Deploy:
+```bash
+netlify deploy --prod --dir=build
+```
+
+### Deploy to Vercel
+
+1. Install Vercel CLI:
+```bash
+npm install -g vercel
+```
+
+2. Deploy:
+```bash
+vercel
+```
+
+### Other Hosting Options
+
+The `build/` folder can be deployed to any static hosting service:
+- GitHub Pages
+- AWS S3 + CloudFront
+- Firebase Hosting
+- Heroku
+
+## 🔐 Authentication
+
+The application uses JWT for authentication. Tokens are stored in cookies for secure session management.
+
+### Protected Routes
+
+Routes are protected using `DashboardProtectedroute.jsx` component. Only authenticated users can access protected pages.
+
+## 📝 License
+
+This project is private and proprietary.
+
+## 💬 Support
+
+For issues or questions, please open an issue in the repository.
+
+---
+
+**Happy coding! 🎉**
 
 ### Analyzing the Bundle Size
 
