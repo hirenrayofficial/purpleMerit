@@ -9,7 +9,7 @@ export default function Users() {
   const [search] = useSearchParams();
   const id = search.get("id");
   const { roles } = useAuth();
-  const [totalUsers, setTotalUsers] = useState(0);
+
 
   // State Management
   const [users, setUsers] = useState([]);
@@ -42,7 +42,6 @@ export default function Users() {
       if (res.status === 200) {
         setUsers(res.data.users || []);
         setTotalPages(res.data.totalPages || 1);
-        setTotalUsers(res.data.totalUsers || 0);
       }
     } catch (error) {
       console.error("Error fetching users", error);

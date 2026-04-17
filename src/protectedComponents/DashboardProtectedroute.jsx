@@ -6,7 +6,6 @@ import { getToken, getUser } from "../utils/auth";
 export default function DashboardProtectedroute({children}) {
   const userCookie = getToken();
   let isAuthenticated = false;
-  const key = process.env.REACT_APP_SECRET_KEY;
 
   const [searchPrams] = useSearchParams();
   const id = searchPrams.get("id");
