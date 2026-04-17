@@ -9,6 +9,7 @@ export default function Users() {
   const [search] = useSearchParams();
   const id = search.get("id");
   const { roles } = useAuth();
+  const [totalUsers, setTotalUsers] = useState(0);
 
   // State Management
   const [users, setUsers] = useState([]);
