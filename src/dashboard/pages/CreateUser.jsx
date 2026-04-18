@@ -38,7 +38,9 @@ export default function CreateUser() {
     role
   };
   const handleSub = async () => {
-    const res = await axios.post(url+"/api/v2/create-user", { payload });
+    const res = await axios.post(url+"/api/v2/create-user", { payload },      {
+            withCredentials: true,
+          },);
     if (res.data.status === 200) {
       alert(res.data.message);
       setEmail("")
